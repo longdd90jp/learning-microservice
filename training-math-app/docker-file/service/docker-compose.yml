@@ -1,0 +1,68 @@
+version: '3.9'
+
+networks:
+  sysNetwork:
+    name: nw-math-trainner
+    driver: bridge
+
+services:
+  rabbitmq:
+    image: 'bitnami/rabbitmq:3.8'
+    container_name: rabbitmq-server
+    networks:
+      - sysNetwork
+    ports:
+      - '15672:15672'
+      - '5672:5672'
+
+  mongodb:
+    image: 'bitnami/mongodb:4.4'
+    container_name: mongodb-server
+    networks:
+      - sysNetwork
+    environment:
+      - MONGODB_PORT_NUMBER=27018
+    ports:
+      - '27018:27018'
+
+  discovery-sever:
+    container_name: discovery-sever
+    build:
+      context: service-registry
+      dockerfile: Dockerfile
+    networks:
+      - sysNetwork
+    ports:
+      - '8761:8761'
+#
+#  service-gamification:
+#    container_name: service-gamification
+#    environment:
+#      - JAVA_OPTS=
+#        -DEUREKA_SERVER=http://discovery:8761/eureka
+#    build:
+#      context: service-gamification
+#      dockerfile: Dockerfile
+#    depends_on:
+#      - discovery
+#    networks:
+#      - sysNetwork
+#    ports:
+#      - '8000:8000'
+#    links:
+#      - discovery
+
+  gateway-server:
+    container_name: gateway-server
+    environment:
+      - JAVA_OPTS=
+        -DEUREKA_SERVER=http://discovery-sever:8761/eureka
+    build:
+      context: service-gateway
+      dockerfile: Dockerfile
+    depends_on:
+      - discovery-sever
+    networks:
+      - sysNetwork
+    ports:
+      - '8000:8000'

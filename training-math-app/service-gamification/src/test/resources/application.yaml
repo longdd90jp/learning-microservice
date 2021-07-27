@@ -1,0 +1,31 @@
+## Spring configuration
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/db_gamification_test
+  rabbitmq:
+    host: localhost
+    username: user
+    password: bitnami
+    port: 5672
+
+## RabbitMQ configuration
+multiplication:
+  exchange: multiplication_exchange
+  solved:
+    key: multiplication.solved
+  queue: gamification_multiplication_queue
+  anything:
+    routing-key: multiplication.*
+
+multiplicationHost: http://localhost:8080
+
+## Log configuration
+logging:
+  level:
+    org:
+      springframework:
+        data:
+          mongodb:
+            core:
+              MongoTemplate=DEBUG:

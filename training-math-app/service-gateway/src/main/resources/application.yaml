@@ -1,0 +1,64 @@
+server:
+  port: 8000
+
+spring:
+  application:
+    name: gateway
+
+zuul:
+  ignoredServices: '*'
+  prefix: /api
+  routes:
+    multiplications:
+      path: /multiplications/**
+      serviceId: service-calculator
+      stripPrefix: false
+    results:
+      path: /results/**
+      serviceId: service-calculator
+      stripPrefix: false
+    users:
+      path: /users/**
+      serviceId: service-calculator
+      stripPrefix: false
+    leaders:
+      path: /leaders/**
+      serviceId: service-gamification
+      stripPrefix: false
+    scores:
+      path: /scores/**
+      serviceId: service-gamification
+      stripPrefix: false
+    stats:
+      path: /status/**
+      serviceId: service-gamification
+#      url: http://localhost:8020/api
+      stripPrefix: false
+
+endpoints:
+  routes:
+    sensitive: false
+  trace:
+    sensitive: false
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}
+    fetchRegistry: true
+
+
+---
+# Adds admin routes for testing purposes
+spring:
+  profiles: test
+zuul:
+  routes:
+    gamification-admin:
+      path: /gamification/admin/**
+      serviceId: service-gamification
+      strip-prefix: false
+    multiplication-admin:
+      path: /multiplication/admin/**
+      serviceId: service-calculator
+      strip-prefix: false

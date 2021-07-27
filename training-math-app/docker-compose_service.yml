@@ -1,0 +1,65 @@
+version: '3.9'
+
+networks:
+  sysNetwork:
+    name: nw-math-trainner
+    driver: bridge
+
+services:
+  discovery-sever:
+    container_name: discovery-sever
+    build:
+      context: service-registry
+      dockerfile: Dockerfile
+    networks:
+      - sysNetwork
+    ports:
+      - '8761:8761'
+
+  service-gamification:
+    container_name: service-gamification
+    environment:
+      - JAVA_OPTS=
+        -DEUREKA_SERVER=http://discovery-sever:8761/eureka
+        -DRABBITMQ_SERVER=rabbitmq
+        -DMONGODB_SERVER=mongodb
+        -DMONGODB_SERVER_PORT=27018
+    build:
+      context: service-gamification
+      dockerfile: Dockerfile
+    depends_on:
+      - discovery-sever
+    networks:
+      - sysNetwork
+
+  service-calculator:
+    container_name: service-calculator
+    environment:
+      - JAVA_OPTS=
+        -DEUREKA_SERVER=http://discovery-sever:8761/eureka
+        -DRABBITMQ_SERVER=rabbitmq
+        -DMONGODB_SERVER=mongodb
+        -DMONGODB_SERVER_PORT=27018
+        -Dport.range=8010_8019
+    build:
+      context: service-calculator
+      dockerfile: Dockerfile
+    depends_on:
+      - discovery-sever
+    networks:
+      - sysNetwork
+
+  gateway-server:
+    container_name: gateway-server
+    environment:
+      - JAVA_OPTS=
+        -DEUREKA_SERVER=http://discovery-sever:8761/eureka
+    build:
+      context: service-gateway
+      dockerfile: Dockerfile
+    depends_on:
+      - discovery-sever
+    networks:
+      - sysNetwork
+    ports:
+      - '8000:8000'

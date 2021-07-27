@@ -1,0 +1,26 @@
+version: '3.9'
+
+networks:
+  sysNetwork:
+    name: nw-math-trainner
+    driver: bridge
+
+services:
+  rabbitmq:
+    image: 'bitnami/rabbitmq:3.8'
+    container_name: rabbitmq-server
+    networks:
+      - sysNetwork
+    ports:
+      - '15672:15672'
+      - '5672:5672'
+
+  mongodb:
+    image: 'bitnami/mongodb:4.4'
+    container_name: mongodb-server
+    networks:
+      - sysNetwork
+    environment:
+      - MONGODB_PORT_NUMBER=27018
+    ports:
+      - '27018:27018'
