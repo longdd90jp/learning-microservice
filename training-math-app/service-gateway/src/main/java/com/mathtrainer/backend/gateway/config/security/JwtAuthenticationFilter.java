@@ -1,5 +1,6 @@
-package com.mathtrainer.backend.gateway.config;
+package com.mathtrainer.backend.gateway.config.security;
 
+import com.mathtrainer.backed.common.constants.CommonConsant;
 import com.mathtrainer.backed.common.constants.URLConstant;
 import com.mathtrainer.backed.common.dto.JWTPayloadDto;
 import com.mathtrainer.backed.common.utils.JwtTokenUtil;
@@ -51,6 +52,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
+        // add custom header and do next filter
+        response.addHeader(CommonConsant.HEADER_USER_ID, payload.getUserId());
+        response.addHeader(CommonConsant.HEADER_USER_NAME, payload.getUsername());
         filterChain.doFilter(request, response);
     }
 

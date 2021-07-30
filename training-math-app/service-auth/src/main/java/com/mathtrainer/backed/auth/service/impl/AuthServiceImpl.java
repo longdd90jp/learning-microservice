@@ -60,6 +60,7 @@ public class AuthServiceImpl implements AuthService {
             User user = userOptional.get();
             JWTPayloadDto payloadDto = new JWTPayloadDto();
             payloadDto.setUsername(user.getUsername());
+            payloadDto.setUserId(user.getId());
             loginResponse.setAccessToken(JwtTokenUtil.generateToken(payloadDto));
         }
         return loginResponse;
