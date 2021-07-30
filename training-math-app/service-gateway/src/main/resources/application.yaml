@@ -9,31 +9,16 @@ zuul:
   ignoredServices: '*'
   prefix: /api
   routes:
-    multiplications:
-      path: /multiplications/**
+    auth:
+      path: /auth/**
+      serviceId: service-auth
+#      stripPrefix: true
+    calculator:
+      path: /calculator/**
       serviceId: service-calculator
-      stripPrefix: false
-    results:
-      path: /results/**
-      serviceId: service-calculator
-      stripPrefix: false
-    users:
-      path: /users/**
-      serviceId: service-calculator
-      stripPrefix: false
-    leaders:
-      path: /leaders/**
+    gamification:
+      path: /gamification/**
       serviceId: service-gamification
-      stripPrefix: false
-    scores:
-      path: /scores/**
-      serviceId: service-gamification
-      stripPrefix: false
-    stats:
-      path: /status/**
-      serviceId: service-gamification
-#      url: http://localhost:8020/api
-      stripPrefix: false
 
 endpoints:
   routes:

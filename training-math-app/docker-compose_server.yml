@@ -18,6 +18,8 @@ services:
   mongodb:
     image: 'bitnami/mongodb:4.4'
     container_name: mongodb-server
+    volumes:
+      - ./docker-volumes/mongodb-persistence:/bitnami/mongodb
     networks:
       - sysNetwork
     environment:

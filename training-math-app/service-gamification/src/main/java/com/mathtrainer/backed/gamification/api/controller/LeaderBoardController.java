@@ -33,10 +33,4 @@ class LeaderBoardController {
     public List<LeaderBoardRow> getLeaderBoard() {
         return leaderBoardService.getCurrentLeaderBoard(TOP_RANGE_VAL);
     }
-
-    private static HttpEntity<?> getHeaders() throws IOException {
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
-        return new HttpEntity<>(headers);
-    }
 }

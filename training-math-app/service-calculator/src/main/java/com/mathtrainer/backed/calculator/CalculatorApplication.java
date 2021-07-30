@@ -1,6 +1,7 @@
 package com.mathtrainer.backed.calculator;
 
-import com.mathtrainer.backed.calculator.utils.SystemUtil;
+import com.mathtrainer.backed.common.utils.SystemUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -16,14 +17,21 @@ public class CalculatorApplication {
 
     public static void main(String[] args) throws Exception {
         SpringApplication app = new SpringApplication(CalculatorApplication.class);
+        modifyDefaultProperties(app);
+        app.run(args);
+    }
 
+    private static void modifyDefaultProperties(SpringApplication app) throws InterruptedException {
         // custom server port by find free port in system variable PORT_RANGE
-        Optional<Integer> freePort = SystemUtil.findFreePort();
+        String configPortRange = System.getProperty("port.range");
+        if(StringUtils.isEmpty(configPortRange)) {
+            throw new InterruptedException("****** system variable port.range is empty ******");
+        }
+        Optional<Integer> freePort = SystemUtil.findFreePort(configPortRange);
         if (freePort.isPresent()) {
             app.setDefaultProperties(Collections.singletonMap("server.port", freePort.get()));
-            app.run(args);
         } else {
-            throw new InterruptedException("All port in system variables [PORT_RANGE] is used, no remain any free port");
+            throw new InterruptedException("All port in system variables [port.range] is used, no remain any free port");
         }
     }
 }

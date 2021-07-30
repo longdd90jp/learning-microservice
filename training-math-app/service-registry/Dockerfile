@@ -1,3 +1,5 @@
 FROM openjdk:11.0-jdk-oracle
-COPY target/service-registry-0.1.jar service-registry.jar
-ENTRYPOINT ["java","-jar","/service-registry.jar"]
+VOLUME /tmp
+ADD target/*.jar service-registry.jar
+ENV JAVA_OPTS=""
+ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -jar /service-registry.jar" ]

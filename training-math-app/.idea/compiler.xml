@@ -9,12 +9,14 @@
         <outputRelativeToContentRoot value="true" />
         <module name="service-gamification" />
         <module name="service-gateway" />
+        <module name="service-auth" />
         <module name="service-common" />
         <module name="service-registry" />
         <module name="service-calculator" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="service-auth" target="11" />
       <module name="service-calculator" target="11" />
       <module name="service-common" target="11" />
       <module name="service-gamification" target="11" />
@@ -24,6 +26,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="service-auth" options="-parameters" />
       <module name="service-calculator" options="-parameters" />
       <module name="service-gamification" options="-parameters" />
       <module name="service-gateway" options="-parameters" />

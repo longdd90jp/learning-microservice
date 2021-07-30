@@ -15,6 +15,7 @@ services:
       - sysNetwork
     ports:
       - '8761:8761'
+    restart: always
 
   service-gamification:
     container_name: service-gamification
@@ -63,3 +64,4 @@ services:
       - sysNetwork
     ports:
       - '8000:8000'
+    restart: always
