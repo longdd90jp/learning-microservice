@@ -4,28 +4,26 @@ server:
 spring:
   application:
     name: gateway
-
-zuul:
-  ignoredServices: '*'
-  sensitiveHeaders:
-  prefix: /api
-  routes:
-    auth:
-      path: /auth/**
-      serviceId: service-auth
-#      stripPrefix: true
-    calculator:
-      path: /calculator/**
-      serviceId: service-calculator
-    gamification:
-      path: /gamification/**
-      serviceId: service-gamification
-
-#endpoints:
-#  routes:
-#    sensitive: false
-#  trace:
-#    sensitive: false
+  cloud:
+    gateway:
+      default-filters:
+        - StripPrefix=2
+      routes:
+        # service auth route
+        - id: serviceAuth
+          uri: lb://SERVICE-AUTH
+          predicates:
+            - Path=/api/auth/**
+        # service gamification route
+        - id: serviceGamification
+          uri: lb://SERVICE-GAMIFICATION
+          predicates:
+            - Path=/api/gamification/**
+        # service gamification route
+        - id: serviceCalculator
+          uri: lb://SERVICE-CALCULATOR
+          predicates:
+            - Path=/api/calculator/**
 
 eureka:
   client:
@@ -33,18 +31,14 @@ eureka:
       defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}
     fetchRegistry: true
 
+logging:
+  level:
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.http.server.reactive: DEBUG
+    org.springframework.web.reactive: DEBUG
+    reactor.ipc.netty: DEBUG
+    reactor.netty: DEBUG
 
----
-# Adds admin routes for testing purposes
-spring:
-  profiles: test
-zuul:
-  routes:
-    gamification-admin:
-      path: /gamification/admin/**
-      serviceId: service-gamification
-      strip-prefix: false
-    multiplication-admin:
-      path: /multiplication/admin/**
-      serviceId: service-calculator
-      strip-prefix: false
+management:
+  endpoint.gateway.enabled: true # default value
+  endpoints.web.exposure.include: gateway

@@ -1,7 +1,6 @@
 package com.mathtrainer.backed.gamification.client;
 
 import com.mathtrainer.backed.gamification.client.dto.MultiplicationResultAttempt;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -32,7 +31,6 @@ class MultiplicationResultAttemptClientImpl implements MultiplicationResultAttem
         this.loadBalancer = loadBalancer;
     }
 
-    @HystrixCommand(fallbackMethod = "defaultResult")
     @Override
     public MultiplicationResultAttempt retrieveMultiplicationResultAttemptbyId(final String multiplicationResultAttemptId) {
         String baseUri = loadBalancer.choose(multiplicationHost).getUri().toString();
@@ -40,11 +38,6 @@ class MultiplicationResultAttemptClientImpl implements MultiplicationResultAttem
         return restTemplate.getForObject(
                 baseUri + "/results/" + multiplicationResultAttemptId,
                 MultiplicationResultAttempt.class);
-    }
-
-    private MultiplicationResultAttempt defaultResult(final Long multiplicationResultAttemptId) {
-        return new MultiplicationResultAttempt("fakeAlias",
-                10, 10, 100, true);
     }
 }
 
