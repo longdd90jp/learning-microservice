@@ -2,6 +2,7 @@ package com.mathtrainer.backed.calculator.api.controller;
 
 import com.mathtrainer.backed.calculator.domain.MultiplicationResultAttempt;
 import com.mathtrainer.backed.calculator.service.MultiplicationService;
+import com.mathtrainer.backed.calculator.utils.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,15 +16,16 @@ import java.util.List;
 @RequestMapping("/results")
 public class MultiplicationResultAttemptController {
 
-    private final MultiplicationService multiplicationService;
+    @Autowired
+    private MultiplicationService multiplicationService;
 
     @Autowired
-    MultiplicationResultAttemptController(final MultiplicationService multiplicationService) {
-        this.multiplicationService = multiplicationService;
-    }
+    private UserUtil userId;
+
 
     @PostMapping
     ResponseEntity<MultiplicationResultAttempt> postResult(@RequestBody MultiplicationResultAttempt multiplicationResultAttempt) {
+        userId.getLoginUserInfo();
         boolean isCorrect = multiplicationService.checkAttempt(multiplicationResultAttempt);
         MultiplicationResultAttempt attemptCopy = new MultiplicationResultAttempt();
         attemptCopy.setUserId(multiplicationResultAttempt.getUserId());

@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Data
 @Document("multiplications")
 @AllArgsConstructor
-public class Multiplication extends BaseCalculation{
+public class Multiplication extends BaseCalculation {
 
     // Both factors
     private int factorA;

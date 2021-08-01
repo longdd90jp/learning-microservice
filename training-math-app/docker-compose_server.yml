@@ -26,3 +26,15 @@ services:
       - MONGODB_PORT_NUMBER=27018
     ports:
       - '27018:27018'
+
+  redis:
+    image: 'bitnami/redis:6.2.5'
+    container_name: redis-server
+    volumes:
+      - ./docker-volumes/redis-persistence:/bitnami/redis/data
+    networks:
+      - sysNetwork
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - '6379:6379'

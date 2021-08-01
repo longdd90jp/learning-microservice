@@ -1,13 +1,9 @@
 package com.mathtrainer.backed.calculator.domain;
 
 import lombok.Data;
-import org.springframework.data.annotation.Id;
 
 @Data
-public class BaseResultAttempt {
-
-    @Id
-    private String id;
+public class BaseResultAttempt extends BaseDocument {
 
     private String userId;
 

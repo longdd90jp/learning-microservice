@@ -22,14 +22,12 @@ import java.util.Map;
 class LeaderBoardController {
 
     private final LeaderBoardService leaderBoardService;
-    private HttpServletRequest request;
 
     private static final int TOP_RANGE_VAL = 10;
 
     @Autowired
-    public LeaderBoardController(final LeaderBoardService leaderBoardService, HttpServletRequest request) {
+    public LeaderBoardController(final LeaderBoardService leaderBoardService) {
         this.leaderBoardService = leaderBoardService;
-        this.request = request;
     }
 
     @GetMapping
