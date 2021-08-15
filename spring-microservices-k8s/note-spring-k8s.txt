@@ -1,0 +1,44 @@
+docker build -t longdd90jp/department .
+docker build -t longdd90jp/employee .
+
+docker build -t longdd90jp/department:v1.0 .
+
+docker push longdd90/department
+
+docker tag longdd90/department longdd90/department
+
+docker tag 6341b91de4e4 longdd90jp/department:1.0
+
+kubectl create clusterrolebinding admin --clusterrole=cluster-admin --serviceaccount=default:default
+
+kubectl create clusterrolebinding admin-ns-employee --clusterrole=cluster-admin --serviceaccount=ns-employee:default
+kubectl create clusterrolebinding admin-ns-department --clusterrole=cluster-admin --serviceaccount=ns-department:default
+kubectl create clusterrolebinding admin-ns-organization --clusterrole=cluster-admin --serviceaccount=ns-organization:default
+kubectl create clusterrolebinding admin-ns-gateway --clusterrole=cluster-admin --serviceaccount=ns-gateway:default
+
+kubectl create serviceaccount api-service-account -n ns-department
+kubectl create serviceaccount api-service-account -n ns-employee
+kubectl create serviceaccount api-service-account -n ns-gateway
+kubectl create serviceaccount api-service-account -n ns-organization
+kubectl create serviceaccount api-service-account -n ns-mongo
+
+vmware/department:1.1
+docker build -t longdd90jp/vmware-department:1.1 .
+docker build -t longdd90jp/vmware-employee:1.1 .
+
+  database-user: bW9uZ28tYWRtaW4=
+  database-password: bW9uZ28tYWRtaW4tcGFzc3dvcmQ=
+
+mongo --host 127.0.0.1 -u 'bW9uZ28tYWRtaW4=' -p 'bW9uZ28tYWRtaW4tcGFzc3dvcmQ=' --authenticationDatabase admin admin
+
+mongo -u 'bW9uZ28tYWRtaW4=' -p 'bW9uZ28tYWRtaW4tcGFzc3dvcmQ='
+
+
+mongo --username mongouser --password mongopass
+
+kubectl create serviceaccount api-service-account -n default
+
+kubectl create clusterrolebinding service-pod-reader-department --clusterrole=microservices-k8s-ns-reader --serviceaccount=default:api-service-account
+
+https://tanzu.vmware.com/developer/guides/kubernetes/app-enhancements-spring-k8s/
+https://github.com/AndriyKalashnykov/spring-microservices-k8s
