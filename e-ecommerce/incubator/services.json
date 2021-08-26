@@ -1,0 +1,9 @@
+{
+    "services": [
+        "service-product",
+        "service-order",
+        "service-customer",
+        "service-auth",
+        "web-ec"
+    ]
+}
