@@ -1,0 +1,26 @@
+server:
+  port: 8030
+
+## Spring configuration
+spring:
+  data:
+    mongodb:
+      uri: mongodb://${MONGODB_SERVER:localhost}:${MONGODB_SERVER_PORT:27017}/db_auth
+  application:
+    name: service-auth
+
+# Service Discovery configuration
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}
+
+## Log configuration
+logging:
+  level:
+    org:
+      springframework:
+        data:
+          mongodb:
+            core:
+              MongoTemplate=DEBUG:

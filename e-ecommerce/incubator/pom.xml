@@ -11,6 +11,10 @@
   <modules>
     <module>../ec-services/service-auth</module>
     <module>../ec-services/service-product</module>
+    <module>../ec-services/service-order</module>
+    <module>../ec-services/service-inventory</module>
+    <module>../ec-services/service-common</module>
+    <module>../ec-services/service-payment</module>
   </modules>
 
 </project>

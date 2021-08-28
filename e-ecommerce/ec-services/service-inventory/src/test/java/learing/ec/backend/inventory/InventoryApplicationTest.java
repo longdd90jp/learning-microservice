@@ -1,4 +1,4 @@
-package learing.ec.backend.product;
+package learing.ec.backend.auth;
 
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;

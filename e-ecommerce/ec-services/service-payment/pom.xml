@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>learning.ec.backend</groupId>
-    <artifactId>service-auth</artifactId>
+    <artifactId>service-payment</artifactId>
     <version>0.1</version>
-    <name>service-auth</name>
-    <description>Learning Spring Boot Microservice K8S With EC App (Service Auth)</description>
+    <name>service-payment</name>
+    <description>Learning Spring Boot Microservice K8S With EC App (Service Payment)</description>
 
     <properties>
         <java.version>11</java.version>

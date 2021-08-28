@@ -4,6 +4,9 @@
         "service-order",
         "service-customer",
         "service-auth",
+        "service-payment",
+        "service-inventory",
+        "service-common",
         "web-ec"
     ]
 }

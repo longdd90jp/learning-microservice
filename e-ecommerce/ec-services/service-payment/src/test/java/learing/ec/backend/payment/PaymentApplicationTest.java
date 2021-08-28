@@ -1,4 +1,4 @@
-package learing.ec.backend.product;
+package learing.ec.backend.payment;
 
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ProductApplicationTest {
+public class PaymentApplicationTest {
 
     @Test
     public void contextLoads() {
