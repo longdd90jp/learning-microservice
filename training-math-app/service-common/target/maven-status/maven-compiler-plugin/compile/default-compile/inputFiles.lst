@@ -1,5 +1,7 @@
 C:\Users\longdd\Desktop\github\learning-microservice\training-math-app\service-common\src\main\java\com\mathtrainer\backed\common\constants\CommonConsant.java
+C:\Users\longdd\Desktop\github\learning-microservice\training-math-app\service-common\src\main\java\com\mathtrainer\backed\common\dto\UserInfoDto.java
 C:\Users\longdd\Desktop\github\learning-microservice\training-math-app\service-common\src\main\java\com\mathtrainer\backed\common\utils\SystemUtil.java
+C:\Users\longdd\Desktop\github\learning-microservice\training-math-app\service-common\src\main\java\com\mathtrainer\backed\common\domain\CommonDocument.java
 C:\Users\longdd\Desktop\github\learning-microservice\training-math-app\service-common\src\main\java\com\mathtrainer\backed\common\event\MultiplicationSolvedEvent.java
 C:\Users\longdd\Desktop\github\learning-microservice\training-math-app\service-common\src\main\java\com\mathtrainer\backed\common\utils\JwtTokenUtil.java
 C:\Users\longdd\Desktop\github\learning-microservice\training-math-app\service-common\src\main\java\com\mathtrainer\backed\common\dto\JWTPayloadDto.java

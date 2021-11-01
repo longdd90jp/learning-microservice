@@ -42,3 +42,9 @@ kubectl create clusterrolebinding service-pod-reader-department --clusterrole=mi
 
 https://tanzu.vmware.com/developer/guides/kubernetes/app-enhancements-spring-k8s/
 https://github.com/AndriyKalashnykov/spring-microservices-k8s
+
+
+kubectl exec "$(kubectl get pod -l app=ratings -o jsonpath='{.items[0].metadata.name}')" -c ratings -- curl -sS productpage:9080/productpage | grep -o
+export INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="http2")].nodePort}')
+
+java -jar common-1.0.jar 1
