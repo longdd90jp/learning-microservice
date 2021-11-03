@@ -41,21 +41,29 @@ export const apiSlice = createApi({
                 body: {reaction},
             }),
             async onQueryStarted({postId, reaction}, {dispatch, queryFulfilled}) {
+                const patchPost = dispatch(
+                    apiSlice.util.updateQueryData('getPost', postId, (draft) => {
+                        console.log(reaction + ' - update post');
+                        draft.reactions[reaction]++;
+                    })
+                );
                 // `updateQueryData` requires the endpoint name and cache key arguments,
                 // so it knows which piece of cache state to update
-                const patchResult = dispatch(
+                const patchPostList = dispatch(
                     apiSlice.util.updateQueryData('getPosts', undefined, draft => {
                         // The `draft` is Immer-wrapped and can be "mutated" like in createSlice
                         const post = draft.find(post => post.id === postId);
                         if (post) {
                             post.reactions[reaction]++;
                         }
+                        console.log(reaction + ' - update post list');
                     })
-                )
+                );
                 try {
                     await queryFulfilled;
                 } catch {
-                    patchResult.undo();
+                    patchPost.undo();
+                    patchPostList.undo();
                 }
             }
         }),
