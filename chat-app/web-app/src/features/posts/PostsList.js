@@ -26,6 +26,7 @@ let PostExcerpt = ({post}) => {
         </article>
     );
 }
+PostExcerpt = React.memo(PostExcerpt);
 
 export const PostsList = () => {
     const {
