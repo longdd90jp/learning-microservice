@@ -1,5 +1,5 @@
 import {rest, setupWorker} from 'msw'
-import {factory, oneOf, manyOf, primaryKey} from '@mswjs/data'
+import {factory, manyOf, oneOf, primaryKey} from '@mswjs/data'
 import {nanoid} from '@reduxjs/toolkit'
 import faker from 'faker'
 import seedrandom from 'seedrandom'

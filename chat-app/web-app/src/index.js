@@ -7,13 +7,12 @@ import {Provider} from 'react-redux';
 
 import {worker} from './api/server';
 
-import {fetchUsers} from './features/users/usersSlice';
+import {extendedApiSlice} from './features/users/usersSlice';
 
 // Start our mock API server
 worker.start({onUnhandledRequest: 'bypass'});
 
-// Only need to fetch the list of users once, and we want to do it right when the application starts
-store.dispatch(fetchUsers());
+store.dispatch(extendedApiSlice.endpoints.getUsers.initiate());
 
 ReactDOM.render(
     <React.StrictMode>
