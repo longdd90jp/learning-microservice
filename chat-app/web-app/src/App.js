@@ -17,7 +17,11 @@ const App = () => (
                                 </div>
                             </div>
                         </div>
-                        <div className="border-top py-1 pl-1"><i className="fa fa-sort-desc mr-1" aria-hidden="true"></i>Users</div>
+                        <div className="border-top py-1 pl-1 position-relative">
+                            <i className="fa fa-sort-desc mr-1 align-text-top" aria-hidden="true"></i>
+                            <span className="ml-1">Users</span>
+                            <i className="fa fa-plus text-success float-right mr-4 mt-1"></i>
+                        </div>
                         <div className="chat-user-list">
                             <a href="#" className="list-group-item list-group-item-action border-0">
                                 <div className="badge bg-success float-right">5</div>
@@ -102,7 +106,11 @@ const App = () => (
                                 </div>
                             </a>
                         </div>
-                        <div className="border-top py-1 pl-1"><i className="fa fa-sort-desc mr-1" aria-hidden="true"></i>Group</div>
+                        <div className="border-top py-1 pl-1 position-relative">
+                            <i className="fa fa-sort-desc mr-1 align-text-top" aria-hidden="true"></i>
+                            <span className="ml-1">Groups</span>
+                            <i className="fa fa-plus text-success float-right mr-4 mt-1"></i>
+                        </div>
                         <div className="chat-user-list">
                             <a href="#" className="list-group-item list-group-item-action border-0">
                                 <div className="badge bg-success float-right">5</div>
