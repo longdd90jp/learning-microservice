@@ -1,13 +1,9 @@
-import {configureStore} from '@reduxjs/toolkit'
+import {configureStore} from '@reduxjs/toolkit';
 
-import notificationsReducer from '../features/notifications/notificationsSlice'
-import {apiSlice} from '../features/api/apiSlice'
+import messagerUsersReducer from '../features/messager/slice/usersSlice';
 
 export default configureStore({
     reducer: {
-        notifications: notificationsReducer,
-        [apiSlice.reducerPath]: apiSlice.reducer,
-    },
-    middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(apiSlice.middleware),
+        messagerUsers: messagerUsersReducer
+    }
 })
