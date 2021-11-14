@@ -1,6 +1,5 @@
 import React, {useMemo} from 'react';
 import { useSelector } from 'react-redux';
-import {userStatuses} from "../../constants/statusConstant";
 
 let UserItem = ({user}) => {
     const GetStatusClass = (status) => {
@@ -46,7 +45,7 @@ export const UserList = () => {
             <div className="py-1 pl-1">
                 <i className="fa fa-sort-desc mr-1 align-text-top cursor-pointer" aria-hidden="true"></i>
                 <span className="ml-1">Users</span>
-                <i className="fa fa-plus text-success float-right mr-4 mt-1 cursor-pointer"></i>
+                <i className="fa fa-plus text-success float-right mt-1 cursor-pointer"></i>
             </div>
             <div className="chat-user-list">
                 {renderedUsers}
