@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+option java_package = "dr.app.core.autogen.grpc.attendance";
+option java_multiple_files = true;
+
+package attendance;
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+import "common.proto";
+import "master.proto";
+
+
+
+service Attendance {
+  rpc putCheckingLog (ATInputLog) returns (ATInputLogResponse);
+}
+
+message ATInputLog {
+  string userId = 1;
+  string officeUserId = 2;
+  ATCheckType checkType = 3;
+  string targetDate = 4;
+  int32 dayMode = 5;
+  bool sameDayConfirm = 6;
+}
+
+message ATInputLogResponse {
+  bool todayFixCancel = 1;
+  string errorCode = 2;
+}
+
+enum ATCheckType {
+  CT_CLOCK = 0;
+  CT_EDIT = 1;
+  CT_WEB = 2;
+  CT_MOBILE = 3;
+  CT_BEACON = 4;
+  CT_DATA = 5;
+}

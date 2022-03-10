@@ -1,0 +1,167 @@
+syntax = "proto3";
+
+option java_package = "dr.app.core.autogen.grpc.registration";
+option java_multiple_files = true;
+
+package registration;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+import "common.proto";
+import "master.proto";
+
+
+
+service Registration {
+  rpc listInstallationBeacon (REListInstallationBeaconRequest) returns (REListInstallationBeaconResponse);
+  rpc listBeaconAttendanceArea (REListBeaconAreaRequest) returns (REListBeaconAttendanceAreaResponse);
+}
+
+message REListInstallationBeaconRequest {
+  /// 検索キーワード
+  string keyword  = 1;
+
+  /// 事業所ID
+  string officeId = 2;
+
+  /// オフセット
+  int32 offset = 3;
+
+  /// 最大取得件数
+  int32 limit = 4;
+
+  /// ビーコン勤怠エリアとのリンク状態
+  LinkStatus linkStatusForAttendanceArea = 5;
+
+  /// ビーコンMr管理エリアとのリンク状態
+  LinkStatus linkStatusForMrManagementArea = 6;
+
+  enum LinkStatus {
+    // リンクされたもののみ
+    ONLY_LINKED = 0;
+
+    // リンクされていないもののみ
+    ONLY_NOT_LINKED = 1;
+
+    // 全て
+    ALL = 2;
+  }
+}
+
+message REListInstallationBeaconResponse {
+  /// 全件数
+  int64 allCount = 1;
+
+  /// 設置用ビーコン情報のリスト
+  repeated REInstallationBeacon installationBeacons = 2;
+}
+
+message REInstallationBeacon {
+
+  /// installation_beaconsのオブジェクトID
+  string installationBeaconId  = 1;
+
+  /// ビーコン名
+  string name = 2;
+
+  /// 事業所ID
+  string officeId = 3;
+
+  /// MACアドレス
+  string mac = 4;
+
+  /// iBeaconにおけるUUID
+  string uuid = 5;
+
+  /// iBeaconにおけるMajor値
+  int32 major = 6;
+
+  /// iBeaconにおけるMinor値
+  int32 minor = 7;
+
+  /// 備考
+  string note = 8;
+
+  /// MQTTデバイスとして登録するかどうかのフラグ
+  bool isMqttDevice = 9;
+
+  /// リンクされているビーコン勤怠エリアのオブジェクトID
+  string linkedBeaconAttendanceAreaId = 10;
+
+  /// リンクされているビーコンMr管理エリアのオブジェクトID
+  string linkedBeaconMrManagementAreaId = 11;
+
+  /// ビーコン勤怠エリア紐付け履歴
+  repeated REAreaHistory beaconAttendanceAreaHistories = 12;
+
+  /// ビーコンMr管理エリア紐付け履歴
+  repeated REAreaHistory beaconMrManagementAreaHistories = 13;
+
+  /// 削除済フラグ
+  bool deleted = 14;
+
+  /// 最終更新時間
+  int64 updated = 15;
+
+  message REAreaHistory {
+    /// 紐付け先ビーコンエリアID
+    string areaId = 1;
+    /// 紐付け先ビーコンエリア名
+    string areaName = 2;
+    /// 対象期間の始まり
+    int64 from = 3;
+    /// 対象期間の終わり
+    int64 to = 4;
+  }
+}
+
+message REListBeaconAreaRequest {
+  /// 検索キーワード
+  string keyword  = 1;
+  /// 事業所ID
+  string officeId = 2;
+  /// オフセット
+  int32 offset = 3;
+  /// 最大取得件数
+  int32 limit = 4;
+}
+
+message REListBeaconAttendanceAreaResponse {
+  /// 全件数
+  int64 allCount = 1;
+  /// REBeaconAttendanceAreaのリスト
+  repeated REBeaconAttendanceArea beaconAttendanceArea = 2;
+  /// どのエリアにも紐づいていないビーコンの数
+  int32 notLinkedBeaconCount = 3;
+}
+
+message REBeaconAttendanceArea {
+  /// ビーコン勤怠エリアコレクションのオブジェクトID
+  string id = 1;
+  /// エリア名
+  string name = 2;
+  /// デフォルトの滞在理由
+  REDefaultStayReason defaultStayReason = 3;
+  /// 表示色
+  int32 color = 4;
+  /// エリアに紐づいたビーコンの数
+  int64 linkedBeaconCount = 5;
+  /// 事業所ID
+  string officeId = 6;
+  /// ビーコン導入種別
+  REBeaconType beaconType = 7;
+  /// 削除済フラグ
+  bool deleted = 8;
+}
+
+enum REDefaultStayReason {
+  /// 業務
+  WORK = 0;
+  /// 自己研鑽
+  RESEARCH = 1;
+}
+
+enum REBeaconType {
+  DRJOY = 0;
+  BEACAPP = 1;
+}
