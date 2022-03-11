@@ -18,50 +18,27 @@
         <java.version>11</java.version>
         <spring-cloud.version>2021.0.1</spring-cloud.version>
         <java.version>11</java.version>
+        <framework.version>0.1</framework.version>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <maven.compiler.source>${java.version}</maven.compiler.source>
-        <protobuf.version>0.1</protobuf.version>
-        <netflix-graphql.version>4.9.16</netflix-graphql.version>
-        <grpc.client.version>2.13.1.RELEASE</grpc.client.version>
     </properties>
 
     <dependencies>
         <!-- spring -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
-
-        <!-- net.devh gRPC -->
         <dependency>
-            <groupId>net.devh</groupId>
-            <artifactId>grpc-client-spring-boot-starter</artifactId>
-            <version>${grpc.client.version}</version>
-        </dependency>
-
-        <!-- netflix graphql -->
-        <dependency>
-            <groupId>com.netflix.graphql.dgs</groupId>
-            <artifactId>graphql-dgs-spring-boot-starter</artifactId>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-gateway</artifactId>
         </dependency>
 
         <!-- dr.app -->
         <dependency>
             <groupId>dr.app.core</groupId>
-            <artifactId>protobuf-gen</artifactId>
+            <artifactId>framework</artifactId>
             <version>0.1</version>
-        </dependency>
-
-        <!-- swagger -->
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>2.10.5</version>
-        </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>2.10.5</version>
         </dependency>
 
         <!-- utils -->
@@ -89,13 +66,6 @@
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
                 <version>${spring-cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.netflix.graphql.dgs</groupId>
-                <artifactId>graphql-dgs-platform-dependencies</artifactId>
-                <version>${netflix-graphql.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

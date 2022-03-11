@@ -21,7 +21,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="framework" options="-parameters" />
+      <module name="framework" options="" />
       <module name="gateway-api" options="-parameters" />
       <module name="service-attendance" options="-parameters" />
       <module name="service-attendance (1)" options="-parameters" />

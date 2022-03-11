@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface CheckingLogRepository extends MongoRepository<CheckingLog, String> {
-    public List<CheckingLog> findCheckingLogByOfficeUserIdAndAndCheckedAt(String officeUserId, String checkedAt);
+    public List<CheckingLog> findCheckingLogByOfficeUserIdAndAndTargetDate(String officeUserId, String targetDate);
 }

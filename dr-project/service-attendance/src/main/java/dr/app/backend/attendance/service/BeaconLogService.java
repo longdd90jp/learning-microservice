@@ -12,7 +12,6 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class BeaconLogService {
-
     private final BeaconLogRepository beaconLogRepository;
 
     public List<BeaconLog> findBeaconLogByOffice(String officeId) {

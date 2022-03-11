@@ -13,6 +13,7 @@
         <module>service-attendance</module>
         <module>service-registration</module>
         <module>gateway-api</module>
+        <module>framework</module>
     </modules>
 
     <properties>
