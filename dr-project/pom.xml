@@ -10,6 +10,7 @@
     <version>0.1</version>
     <modules>
         <module>protobuf</module>
+        <module>service-uaa</module>
         <module>service-attendance</module>
         <module>service-registration</module>
         <module>gateway-api</module>

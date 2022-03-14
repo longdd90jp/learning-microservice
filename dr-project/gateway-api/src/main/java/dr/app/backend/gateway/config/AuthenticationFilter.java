@@ -4,7 +4,9 @@ import dr.app.core.framework.constant.CommonConsant;
 import dr.app.core.framework.constant.URLConstant;
 import dr.app.core.framework.dto.JWTPayloadDto;
 import dr.app.core.framework.utils.JwtTokenUtil;
+import lombok.SneakyThrows;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
@@ -17,6 +19,10 @@ import reactor.core.publisher.Mono;
 
 @Component
 public class AuthenticationFilter implements GlobalFilter, Ordered {
+    @Autowired
+    private JwtTokenUtil jwtTokenUtil;
+
+    @SneakyThrows
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
@@ -26,19 +32,18 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
 
         String jwtToken = getJwtFromRequest(request);
         // validate jwt
-        String errMsg = JwtTokenUtil.validateToken(jwtToken);
-        if (StringUtils.isNotEmpty(errMsg)) {
+        if (!jwtTokenUtil.verifyJWTToken(jwtToken)) {
             return this.onError(exchange, "Authorization header is invalid", HttpStatus.UNAUTHORIZED);
         }
 
         // add data to header to down stream service
-        JWTPayloadDto payload = JwtTokenUtil.getPayloadFromJWT(jwtToken);
+        JWTPayloadDto payload = jwtTokenUtil.getPayloadFromJWT(jwtToken);
 
         ServerWebExchange modifiedExchange = exchange.mutate()
                 // modify the original request:
                 .request(originalRequest -> {
-                    originalRequest.header(CommonConsant.HEADER_USER_ID, payload.getUserId()).build();
-                    originalRequest.header(CommonConsant.HEADER_USER_NAME, payload.getUsername()).build();
+                    originalRequest.header(CommonConsant.HEADER_OFFICE_ID, payload.getOfficeId()).build();
+                    originalRequest.header(CommonConsant.HEADER_OFFICE_USER_ID, payload.getOfficeUserId()).build();
                 })
                 .build();
 

@@ -9,22 +9,27 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>dr.app.backend</groupId>
-    <artifactId>gateway-api</artifactId>
+    <artifactId>service-uaa</artifactId>
     <version>0.1</version>
-    <name>gateway-api</name>
-    <description>Service Gateway Api</description>
+    <name>service-auth</name>
+    <description>Demo project for Spring Boot</description>
 
     <properties>
         <java.version>11</java.version>
-        <spring-cloud.version>2021.0.1</spring-cloud.version>
-        <java.version>11</java.version>
-        <framework.version>0.1</framework.version>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <maven.compiler.source>${java.version}</maven.compiler.source>
+        <protobuf.version>0.1</protobuf.version>
+        <spring-cloud.version>2021.0.1</spring-cloud.version>
+        <grpc.server.version>2.13.1.RELEASE</grpc.server.version>
         <grpc.client.version>2.13.1.RELEASE</grpc.client.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
         <!-- net.devh gRPC -->
         <dependency>
             <groupId>net.devh</groupId>
@@ -32,25 +37,15 @@
             <version>${grpc.client.version}</version>
         </dependency>
 
-        <!-- spring -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-webflux</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-gateway</artifactId>
-        </dependency>
-
         <!-- dr.app -->
         <dependency>
             <groupId>dr.app.core</groupId>
-            <artifactId>framework</artifactId>
+            <artifactId>protobuf-gen</artifactId>
             <version>0.1</version>
         </dependency>
         <dependency>
             <groupId>dr.app.core</groupId>
-            <artifactId>protobuf-gen</artifactId>
+            <artifactId>framework</artifactId>
             <version>0.1</version>
         </dependency>
 

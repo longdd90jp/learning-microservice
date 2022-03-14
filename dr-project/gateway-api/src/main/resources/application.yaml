@@ -1,6 +1,20 @@
 server:
   port: ${HTTP_SERVER_PORT:8080}
 
+jwt:
+  issuer: ${JWT_ISSUER:dr.app}
+  algorith-name: ${JWT_ALGORITH_NAME:HS512}
+  expire-in-second: ${HTTP_EXPIRE_IN_SECOND:3600}
+  secret: ${JWT_SECRET:123@abc}
+
+grpc:
+  server:
+    port: ${GRPC_SERVER_PORT:12080}
+  client:
+    registration:
+      address: ${GRPC_CLIENT_REGISTRATION_HOST_PORT:static://localhost:12050}
+      negotiationType: plaintext
+
 spring:
   cloud:
     gateway:
@@ -15,5 +29,11 @@ spring:
           uri: http://localhost:12055/
           predicates:
             - Path=/api/reg/**
+          filters:
+            - StripPrefix=2
+        - id: uaa
+          uri: http://localhost:9299/
+          predicates:
+            - Path=/api/uaa/**
           filters:
             - StripPrefix=2

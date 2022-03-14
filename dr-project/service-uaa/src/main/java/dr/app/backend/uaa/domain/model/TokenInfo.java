@@ -1,0 +1,18 @@
+package dr.app.backend.uaa.domain.model;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class TokenInfo {
+    private String idToken;
+    private String accessToken;
+    private String refreshToken;
+    private Long expiresIn;
+    private String scope;
+    private boolean saveLogin;
+    private String jti;
+}

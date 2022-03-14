@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="service-attendance" />
         <module name="service-registration" />
+        <module name="service-uaa" />
         <module name="protobuf" />
         <module name="gateway-api" />
         <module name="framework" />
@@ -27,6 +28,7 @@
       <module name="service-attendance (1)" options="-parameters" />
       <module name="service-gateway-api" options="-parameters" />
       <module name="service-registration" options="-parameters" />
+      <module name="service-uaa" options="-parameters" />
     </option>
   </component>
 </project>

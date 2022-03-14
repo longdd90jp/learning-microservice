@@ -61,7 +61,7 @@ public class BeaconLog extends BasicEntity {
 
     public enum Origin {
         BEACAPP(0),
-        BEACON(1);
+        DRJOY(1);
 
         final int type;
 
