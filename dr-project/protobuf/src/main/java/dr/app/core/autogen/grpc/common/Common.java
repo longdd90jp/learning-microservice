@@ -14,6 +14,16 @@ public final class Common {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_common_ErrorList_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_common_ErrorList_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_common_Error_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_common_Error_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -23,13 +33,33 @@ public final class Common {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\014common.proto\022\006commonB#\n\037dr.app.core.au" +
-      "togen.grpc.commonP\001b\006proto3"
+      "\n\014common.proto\022\006common\032\033google/protobuf/" +
+      "empty.proto\032\037google/protobuf/timestamp.p" +
+      "roto\"*\n\tErrorList\022\035\n\006errors\030\001 \003(\0132\r.comm" +
+      "on.Error\"&\n\005Error\022\014\n\004code\030\001 \001(\t\022\017\n\007messa" +
+      "ge\030\002 \001(\tB#\n\037dr.app.core.autogen.grpc.com" +
+      "monP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
+          com.google.protobuf.EmptyProto.getDescriptor(),
+          com.google.protobuf.TimestampProto.getDescriptor(),
         });
+    internal_static_common_ErrorList_descriptor =
+      getDescriptor().getMessageTypes().get(0);
+    internal_static_common_ErrorList_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_common_ErrorList_descriptor,
+        new java.lang.String[] { "Errors", });
+    internal_static_common_Error_descriptor =
+      getDescriptor().getMessageTypes().get(1);
+    internal_static_common_Error_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_common_Error_descriptor,
+        new java.lang.String[] { "Code", "Message", });
+    com.google.protobuf.EmptyProto.getDescriptor();
+    com.google.protobuf.TimestampProto.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

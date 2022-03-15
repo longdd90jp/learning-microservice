@@ -1,7 +1,7 @@
 package dr.app.backend.registration.service;
 
 import dr.app.backend.registration.domain.entity.BeaconAttendanceArea;
-import dr.app.backend.registration.domain.respository.BeaconAttendanceAreaRepository;
+import dr.app.backend.registration.domain.repository.BeaconAttendanceAreaRepository;
 import dr.app.core.autogen.grpc.registration.REBeaconAttendanceArea;
 import dr.app.core.autogen.grpc.registration.REBeaconType;
 import dr.app.core.autogen.grpc.registration.REListBeaconAreaRequest;

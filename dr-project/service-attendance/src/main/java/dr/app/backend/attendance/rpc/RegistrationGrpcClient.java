@@ -1,4 +1,4 @@
-package dr.app.backend.attendance.service;
+package dr.app.backend.attendance.rpc;
 
 import dr.app.core.autogen.grpc.registration.REInstallationBeacon;
 import dr.app.core.autogen.grpc.registration.REListInstallationBeaconRequest;
@@ -14,7 +14,7 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class RegistrationService {
+public class RegistrationGrpcClient {
     @GrpcClient("registration")
     private Channel registrationChannel;
 

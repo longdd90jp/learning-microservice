@@ -2,6 +2,7 @@ package dr.app.backend.registration.rpc;
 
 import dr.app.backend.registration.service.BeaconAttendanceAreaService;
 import dr.app.backend.registration.service.InstallationBeaconService;
+import dr.app.backend.registration.service.LoginService;
 import dr.app.core.autogen.grpc.registration.*;
 import io.grpc.stub.StreamObserver;
 import net.devh.boot.grpc.server.service.GrpcService;
@@ -14,11 +15,14 @@ public class RegistrationGrpcServer extends RegistrationGrpc.RegistrationImplBas
 
     private final InstallationBeaconService installationBeaconService;
     private final BeaconAttendanceAreaService beaconAttendanceAreaService;
+    private final LoginService loginService;
 
     public RegistrationGrpcServer(InstallationBeaconService installationBeaconService,
-                                  BeaconAttendanceAreaService beaconAttendanceAreaService) {
+                                  BeaconAttendanceAreaService beaconAttendanceAreaService,
+                                  LoginService loginService) {
         this.installationBeaconService = installationBeaconService;
         this.beaconAttendanceAreaService = beaconAttendanceAreaService;
+        this.loginService = loginService;
     }
 
     @Override

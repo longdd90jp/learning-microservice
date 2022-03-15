@@ -1,6 +1,7 @@
 package dr.app.backend.registration.domain.entity;
 
 import com.google.common.collect.Lists;
+import dr.app.backend.registration.domain.model.ManagementAuthority;
 import dr.app.backend.registration.domain.model.OfficeType;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
@@ -92,4 +93,7 @@ public class OfficeUser {
 
     // First entry successfully
     private Date firstEntryUpdated;
+
+    /** 管理権限 */
+    private ManagementAuthority managementAuthority;
 }

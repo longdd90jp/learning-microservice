@@ -49,6 +49,11 @@
             <artifactId>protobuf-gen</artifactId>
             <version>0.1</version>
         </dependency>
+        <dependency>
+            <groupId>dr.app.core</groupId>
+            <artifactId>framework</artifactId>
+            <version>0.1</version>
+        </dependency>
 
         <!-- utils -->
         <dependency>

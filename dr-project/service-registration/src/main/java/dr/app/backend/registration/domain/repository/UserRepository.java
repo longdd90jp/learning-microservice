@@ -1,0 +1,10 @@
+package dr.app.backend.registration.domain.repository;
+
+import dr.app.backend.registration.domain.entity.User;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface UserRepository extends MongoRepository<User, String> {
+    User findFirstByLoginId(String loginId);
+}

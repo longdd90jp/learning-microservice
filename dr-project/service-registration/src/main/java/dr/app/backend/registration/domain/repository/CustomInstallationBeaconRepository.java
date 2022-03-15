@@ -1,4 +1,4 @@
-package dr.app.backend.registration.domain.respository;
+package dr.app.backend.registration.domain.repository;
 
 import dr.app.backend.registration.domain.entity.InstallationBeacon;
 import dr.app.core.autogen.grpc.registration.REListInstallationBeaconRequest;

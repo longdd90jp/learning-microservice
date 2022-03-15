@@ -1,0 +1,75 @@
+syntax = "proto3";
+
+option java_package = "dr.app.core.autogen.grpc.registration";
+option java_multiple_files = true;
+
+package registration;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+import "common.proto";
+import "master.proto";
+import "registration.proto";
+
+
+
+service RegistrationAuth {
+  rpc GetLoginInfo (RELoginRequest) returns (RELoginUserResponse) {};
+  rpc GetLoginUserInfo (REGetLoginUserInfoRequest) returns (REGetLoginUserInfoResponse) {};
+}
+
+message RELoginRequest {
+  /// ログインID
+  string loginId = 1;
+}
+
+message RELoginUserResponse {
+  /// ユーザーID
+  string userId = 1;
+  /// ログインID
+  string loginId = 2;
+  /// パスワード(クイックログインの時はクイックトークン)
+  string password = 3;
+  /// オフィスID
+  string officeId = 4;
+  /// 事業所ユーザID
+  string officeUserId = 5;
+  /// アカウントステータス
+  int32 accountStatuses = 6;
+  /// 管理権限
+  REManagementAuthority managementAuthority = 7;
+  /// オフィスタイプ
+  REOfficeType officeType = 10;
+  /// personal flag
+  bool personalFlag = 11;
+  /// ロール
+  repeated string roleCodes = 12;
+  /// オフィス毎のセッション有効期限
+  int64 officeSessionExpiration = 13;
+  /// 二要素認証有効化フラグ
+  bool twoFactorAuthenticationEnabled = 14;
+}
+
+message REGetLoginUserInfoRequest {
+  /// 事業所ユーザID
+  string officeUserId = 1;
+}
+
+message REGetLoginUserInfoResponse {
+  REUserInfo userInfo = 1;
+  REOfficeInfo officeInfo = 2;
+}
+
+message REUserInfo {
+  string userId = 1;
+  string officeUserId = 2;
+  REOfficeType officeType = 3;
+  string firstName = 4;
+  string lastName = 5;
+}
+
+message REOfficeInfo {
+  string officeId = 1;
+  string name = 2;
+  REOfficeType officeType = 3;
+}

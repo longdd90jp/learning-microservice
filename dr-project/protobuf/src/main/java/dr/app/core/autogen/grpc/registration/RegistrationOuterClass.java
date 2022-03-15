@@ -49,6 +49,11 @@ public final class RegistrationOuterClass {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_registration_REBeaconAttendanceArea_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_registration_RERole_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_registration_RERole_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -98,17 +103,26 @@ public final class RegistrationOuterClass {
       "gistration.REDefaultStayReason\022\r\n\005color\030" +
       "\004 \001(\005\022\031\n\021linkedBeaconCount\030\005 \001(\003\022\020\n\010offi" +
       "ceId\030\006 \001(\t\022.\n\nbeaconType\030\007 \001(\0162\032.registr" +
-      "ation.REBeaconType\022\017\n\007deleted\030\010 \001(\010*-\n\023R" +
-      "EDefaultStayReason\022\010\n\004WORK\020\000\022\014\n\010RESEARCH" +
-      "\020\001*&\n\014REBeaconType\022\t\n\005DRJOY\020\000\022\013\n\007BEACAPP" +
-      "\020\0012\374\001\n\014Registration\022w\n\026listInstallationB" +
-      "eacon\022-.registration.REListInstallationB" +
-      "eaconRequest\032..registration.REListInstal" +
-      "lationBeaconResponse\022s\n\030listBeaconAttend" +
-      "anceArea\022%.registration.REListBeaconArea" +
-      "Request\0320.registration.REListBeaconAtten" +
-      "danceAreaResponseB)\n%dr.app.core.autogen" +
-      ".grpc.registrationP\001b\006proto3"
+      "ation.REBeaconType\022\017\n\007deleted\030\010 \001(\010\"\336\001\n\006" +
+      "RERole\022\n\n\002id\030\001 \001(\t\022\014\n\004code\030\002 \001(\t\022\014\n\004name" +
+      "\030\003 \001(\t\022\024\n\014displayOrder\030\004 \001(\005\022\r\n\005added\030\005 " +
+      "\001(\t\022\017\n\007deleted\030\006 \001(\t\022\024\n\014functionCode\030\007 \001" +
+      "(\t\022\034\n\024functionDisplayOrder\030\010 \001(\005\022\017\n\007crea" +
+      "ted\030\t \001(\t\022\017\n\007creator\030\n \001(\t\022\017\n\007updated\030\013 " +
+      "\001(\t\022\017\n\007updater\030\014 \001(\t*-\n\023REDefaultStayRea" +
+      "son\022\010\n\004WORK\020\000\022\014\n\010RESEARCH\020\001*&\n\014REBeaconT" +
+      "ype\022\t\n\005DRJOY\020\000\022\013\n\007BEACAPP\020\001*D\n\014REOfficeT" +
+      "ype\022\013\n\007MEDICAL\020\000\022\014\n\010PHARMACY\020\001\022\016\n\nDRUG_S" +
+      "TORE\020\002\022\t\n\005OTHER\020\003*5\n\025REManagementAuthori" +
+      "ty\022\010\n\004MP_1\020\000\022\010\n\004MP_2\020\001\022\010\n\004MP_3\020\0022\374\001\n\014Reg" +
+      "istration\022w\n\026listInstallationBeacon\022-.re" +
+      "gistration.REListInstallationBeaconReque" +
+      "st\032..registration.REListInstallationBeac" +
+      "onResponse\022s\n\030listBeaconAttendanceArea\022%" +
+      ".registration.REListBeaconAreaRequest\0320." +
+      "registration.REListBeaconAttendanceAreaR" +
+      "esponseB)\n%dr.app.core.autogen.grpc.regi" +
+      "strationP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -160,6 +174,12 @@ public final class RegistrationOuterClass {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_registration_REBeaconAttendanceArea_descriptor,
         new java.lang.String[] { "Id", "Name", "DefaultStayReason", "Color", "LinkedBeaconCount", "OfficeId", "BeaconType", "Deleted", });
+    internal_static_registration_RERole_descriptor =
+      getDescriptor().getMessageTypes().get(6);
+    internal_static_registration_RERole_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_registration_RERole_descriptor,
+        new java.lang.String[] { "Id", "Code", "Name", "DisplayOrder", "Added", "Deleted", "FunctionCode", "FunctionDisplayOrder", "Created", "Creator", "Updated", "Updater", });
     com.google.protobuf.EmptyProto.getDescriptor();
     com.google.protobuf.TimestampProto.getDescriptor();
     dr.app.core.autogen.grpc.common.Common.getDescriptor();

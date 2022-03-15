@@ -4,3 +4,15 @@ option java_package = "dr.app.core.autogen.grpc.common";
 option java_multiple_files = true;
 
 package common;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+message ErrorList {
+  repeated Error errors = 1;
+}
+
+message Error {
+  string code = 1;
+  string message = 2;
+}

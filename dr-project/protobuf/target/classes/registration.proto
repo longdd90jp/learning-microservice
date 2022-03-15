@@ -165,3 +165,50 @@ enum REBeaconType {
   DRJOY = 0;
   BEACAPP = 1;
 }
+
+enum REOfficeType {
+  MEDICAL = 0;
+  PHARMACY = 1;
+  DRUG_STORE = 2;
+  OTHER = 3;
+}
+
+/**
+ * 管理権限
+ */
+enum REManagementAuthority {
+  /// 全体管理者
+  MP_1 = 0;
+  /// 所属管理者
+  MP_2 = 1;
+  /// なし
+  MP_3 = 2;
+}
+
+/// ロール
+message RERole {
+  /// ID
+  string id = 1;
+  /// ロールコード
+  string code = 2;
+  /// ロール名
+  string name = 3;
+  /// ロール表示順
+  int32 displayOrder = 4;
+  /// 機能追加日
+  string added = 5;
+  /// 機能削除日
+  string deleted = 6;
+  /// 機能コード
+  string functionCode = 7;
+  /// 機能表示順
+  int32 functionDisplayOrder = 8;
+  /// 作成日時
+  string created = 9;
+  /// 作成者
+  string creator = 10;
+  /// 更新日時
+  string updated = 11;
+  /// 更新者
+  string updater = 12;
+}
