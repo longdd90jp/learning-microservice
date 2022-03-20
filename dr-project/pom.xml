@@ -15,6 +15,7 @@
         <module>service-registration</module>
         <module>gateway-api</module>
         <module>framework</module>
+        <module>config-server</module>
     </modules>
 
     <properties>

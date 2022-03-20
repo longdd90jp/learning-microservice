@@ -1,0 +1,13 @@
+server:
+  port: ${REST_SERVER_PORT:12055}
+
+spring:
+  application:
+    name: service-registration
+  data:
+    mongodb:
+      uri: ${MONGO_URL:mongodb://localhost:27017/registration}
+
+grpc:
+  server:
+    port: ${GRPC_SERVER_PORT:12050}

@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: service-registration
+  cloud:
+    config:
+      uri: http://root:s3cr3t@localhost:9000
+      name: global, service-registration
+      profile: default

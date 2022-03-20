@@ -1,0 +1,14 @@
+server:
+  port: ${REST_SERVER_PORT:9000}
+
+spring:
+  application:
+    name: config-server
+  # profile
+  profiles:
+    active: native
+  # security
+  security:
+    user:
+      name: root
+      password: s3cr3t
