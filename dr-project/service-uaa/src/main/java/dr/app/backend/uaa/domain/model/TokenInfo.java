@@ -11,7 +11,8 @@ public class TokenInfo {
     private String idToken;
     private String accessToken;
     private String refreshToken;
-    private Long expiresIn;
+    private Long accessTokenExpireTime;
+    private Long refreshTokenExpireTime;
     private String scope;
     private boolean saveLogin;
     private String jti;

@@ -4,6 +4,8 @@ import lombok.Data;
 
 @Data
 public class JWTPayloadDto {
+    private String userId;
     private String officeId;
     private String officeUserId;
+    private String officeType;
 }

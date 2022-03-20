@@ -6,8 +6,7 @@ import dr.app.backend.registration.domain.entity.OfficeUserRole;
 import dr.app.backend.registration.domain.entity.User;
 import dr.app.backend.registration.domain.model.OfficeType;
 import dr.app.backend.registration.domain.repository.*;
-import dr.app.core.autogen.grpc.registration.RELoginRequest;
-import dr.app.core.autogen.grpc.registration.RELoginUserResponse;
+import dr.app.core.autogen.grpc.registration.*;
 import dr.app.core.framework.constant.Message;
 import dr.app.core.framework.grpc.ServiceStatus;
 import io.grpc.stub.StreamObserver;
@@ -87,6 +86,25 @@ public class LoginService {
             builder.addRoleCodes(officeUserRole.getRoleCode());
         });
         builder.setOfficeSessionExpiration(office.getOfficeSessionExpiration());
+
+        // build other info
+        builder.setUserInfo(buildREUserInfo(officeUser));
+        builder.setOfficeInfo(buildREOfficeInfo(office));
         return builder;
+    }
+
+    private REUserInfo buildREUserInfo(final OfficeUser officeUser) {
+        REUserInfo.Builder builder = REUserInfo.newBuilder();
+        builder.setOfficeType(REOfficeType.valueOf(officeUser.getOfficeType().name()));
+        builder.setLastName(officeUser.getLastName());
+        builder.setFirstName(officeUser.getFirstName());
+        return builder.build();
+    }
+
+    private REOfficeInfo buildREOfficeInfo(final Office office) {
+        REOfficeInfo.Builder builder = REOfficeInfo.newBuilder();
+        builder.setOfficeType(REOfficeType.valueOf(office.getOfficeType().name()));
+        builder.setName(office.getName());
+        return builder.build();
     }
 }

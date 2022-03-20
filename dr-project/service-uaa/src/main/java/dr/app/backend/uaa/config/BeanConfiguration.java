@@ -1,4 +1,4 @@
-package dr.app.backend.gateway.config;
+package dr.app.backend.uaa.config;
 
 import dr.app.core.framework.constant.JwtAlgorithm;
 import dr.app.core.framework.utils.JwtTokenUtil;

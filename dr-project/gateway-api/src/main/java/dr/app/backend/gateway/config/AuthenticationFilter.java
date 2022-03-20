@@ -1,6 +1,6 @@
 package dr.app.backend.gateway.config;
 
-import dr.app.core.framework.constant.CommonConsant;
+import dr.app.core.framework.constant.CommonConstant;
 import dr.app.core.framework.constant.URLConstant;
 import dr.app.core.framework.dto.JWTPayloadDto;
 import dr.app.core.framework.utils.JwtTokenUtil;
@@ -32,8 +32,9 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
 
         String jwtToken = getJwtFromRequest(request);
         // validate jwt
-        if (!jwtTokenUtil.verifyJWTToken(jwtToken)) {
-            return this.onError(exchange, "Authorization header is invalid", HttpStatus.UNAUTHORIZED);
+        String errorCode = jwtTokenUtil.verifyJWTAccessToken(jwtToken);
+        if (StringUtils.isNotEmpty(errorCode)) {
+            return this.onError(exchange, errorCode, HttpStatus.UNAUTHORIZED);
         }
 
         // add data to header to down stream service
@@ -42,8 +43,10 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
         ServerWebExchange modifiedExchange = exchange.mutate()
                 // modify the original request:
                 .request(originalRequest -> {
-                    originalRequest.header(CommonConsant.HEADER_OFFICE_ID, payload.getOfficeId()).build();
-                    originalRequest.header(CommonConsant.HEADER_OFFICE_USER_ID, payload.getOfficeUserId()).build();
+                    originalRequest.header(CommonConstant.HEADER_USER_ID, payload.getUserId()).build();
+                    originalRequest.header(CommonConstant.HEADER_OFFICE_ID, payload.getOfficeId()).build();
+                    originalRequest.header(CommonConstant.HEADER_OFFICE_USER_ID, payload.getOfficeUserId()).build();
+                    originalRequest.header(CommonConstant.HEADER_OFFICE_TYPE, payload.getOfficeType()).build();
                 })
                 .build();
 
@@ -56,15 +59,14 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
     }
 
     private boolean isSkipCheckAuth(String urlPath) {
-        if(URLConstant.LOGIN_URI.equals(urlPath) || URLConstant.REGISTER_URI.equals(urlPath)) {
+        if(URLConstant.LOGIN_URI.equals(urlPath) || URLConstant.REFRESH_TOKEN.equals(urlPath)) {
             return true;
         }
         return false;
     }
-    private Mono<Void> onError(ServerWebExchange exchange, String err, HttpStatus httpStatus) {
+    private Mono<Void> onError(ServerWebExchange exchange, String errorCode, HttpStatus httpStatus) {
         ServerHttpResponse response = exchange.getResponse();
-        response.getHeaders().add("errMsg", err);
-        response.getHeaders().add("errCode", "ERROR_001");
+        response.getHeaders().add("errorCode", errorCode);
         response.setStatusCode(httpStatus);
         return response.setComplete();
     }

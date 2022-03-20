@@ -3,8 +3,9 @@ server:
 
 jwt:
   issuer: ${JWT_ISSUER:dr.app}
-  algorith-name: ${JWT_ALGORITH_NAME:HS512}
-  expire-in-second: ${HTTP_EXPIRE_IN_SECOND:3600}
+  algorithm-name: ${JWT_ALGORITH_NAME:HS512}
+  access-token-expire-in-second: ${ACCESS_TOKEN_EXPIRE_IN_SECOND:3600}
+  refresh-token-expire-in-second: ${REFRESH_TOKEN_EXPIRE_IN_SECOND:86400}
   secret: ${JWT_SECRET:123@abc}
 
 grpc:

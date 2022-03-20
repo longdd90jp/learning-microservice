@@ -5,5 +5,13 @@ grpc:
     registration:
       address: ${GRPC_CLIENT_REGISTRATION_HOST_PORT:static://localhost:12050}
       negotiationType: plaintext
+
+jwt:
+  issuer: ${JWT_ISSUER:dr.app}
+  algorithm-name: ${JWT_ALGORITH_NAME:HS512}
+  access-token-expire-in-second: ${ACCESS_TOKEN_EXPIRE_IN_SECOND:3600}
+  refresh-token-expire-in-second: ${REFRESH_TOKEN_EXPIRE_IN_SECOND:86400}
+  secret: ${JWT_SECRET:123@abc}
+
 server:
   port: ${REST_SERVER_PORT:9299}

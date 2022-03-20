@@ -48,6 +48,10 @@ message RELoginUserResponse {
   int64 officeSessionExpiration = 13;
   /// 二要素認証有効化フラグ
   bool twoFactorAuthenticationEnabled = 14;
+  /// user info
+  REUserInfo userInfo = 15;
+  /// office info
+  REOfficeInfo officeInfo = 16;
 }
 
 message REGetLoginUserInfoRequest {
@@ -61,15 +65,12 @@ message REGetLoginUserInfoResponse {
 }
 
 message REUserInfo {
-  string userId = 1;
-  string officeUserId = 2;
-  REOfficeType officeType = 3;
-  string firstName = 4;
-  string lastName = 5;
+  REOfficeType officeType = 1;
+  string firstName = 2;
+  string lastName = 3;
 }
 
 message REOfficeInfo {
-  string officeId = 1;
-  string name = 2;
-  REOfficeType officeType = 3;
+  string name = 1;
+  REOfficeType officeType = 2;
 }
