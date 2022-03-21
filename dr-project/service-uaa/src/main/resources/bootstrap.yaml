@@ -1,8 +1,0 @@
-spring:
-  application:
-    name: service-uaa
-  cloud:
-    config:
-      uri: http://root:s3cr3t@localhost:9000
-      name: global, service-uaa
-      profile: default

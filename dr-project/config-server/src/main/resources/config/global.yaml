@@ -10,6 +10,6 @@ grpc:
     registration:
       address: ${GRPC_CLIENT_REGISTRATION_HOST_PORT:static://localhost:12050}
       negotiationType: plaintext
-    attendace:
-      address: ${GRPC_CLIENT_REGISTRATION_HOST_PORT:static://localhost:12080}
+    attendance:
+      address: ${GRPC_CLIENT_ATTENDANCE_HOST_PORT:static://localhost:12080}
       negotiationType: plaintext

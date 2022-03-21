@@ -1,14 +1,12 @@
-#spring:
-#  application:
-#    name: service-uaa
-#
-#grpc:
-#  server:
-#    port: ${GRPC_SERVER_PORT:12080}
-#  client:
-#    registration:
-#      address: ${GRPC_CLIENT_REGISTRATION_HOST_PORT:static://localhost:12050}
-#      negotiationType: plaintext
-#
-#server:
-#  port: ${REST_SERVER_PORT:9299}
+spring:
+  application:
+    name: service-uaa
+  config:
+    import: "configserver:"
+  cloud:
+    config:
+      uri: http://localhost:9000
+      username: root
+      password: s3cr3t
+      name: global, service-uaa
+      profile: default

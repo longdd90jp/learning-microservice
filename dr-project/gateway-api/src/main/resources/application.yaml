@@ -1,40 +1,12 @@
-server:
-  port: ${HTTP_SERVER_PORT:8080}
-
-jwt:
-  issuer: ${JWT_ISSUER:dr.app}
-  algorithm-name: ${JWT_ALGORITH_NAME:HS512}
-  access-token-expire-in-second: ${ACCESS_TOKEN_EXPIRE_IN_SECOND:3600}
-  refresh-token-expire-in-second: ${REFRESH_TOKEN_EXPIRE_IN_SECOND:86400}
-  secret: ${JWT_SECRET:123@abc}
-
-grpc:
-  server:
-    port: ${GRPC_SERVER_PORT:12080}
-  client:
-    registration:
-      address: ${GRPC_CLIENT_REGISTRATION_HOST_PORT:static://localhost:12050}
-      negotiationType: plaintext
-
 spring:
+  application:
+    name: gateway-api
+  config:
+    import: "configserver:"
   cloud:
-    gateway:
-      routes:
-        - id: attendance
-          uri: http://localhost:12085/
-          predicates:
-            - Path=/api/at/**
-          filters:
-            - StripPrefix=2
-        - id: registration
-          uri: http://localhost:12055/
-          predicates:
-            - Path=/api/reg/**
-          filters:
-            - StripPrefix=2
-        - id: uaa
-          uri: http://localhost:9299/
-          predicates:
-            - Path=/api/uaa/**
-          filters:
-            - StripPrefix=2
+    config:
+      uri: http://localhost:9000
+      username: root
+      password: s3cr3t
+      name: global, gateway-api
+      profile: default
