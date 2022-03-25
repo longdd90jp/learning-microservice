@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  # ten cua pv
+  name: db-pv
+  labels:
+    name: db-pv
+spec:
+  # class name pv de dung o pvc
+  storageClassName: db-pv-manual
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    # data luu o cluster
+    path: "/data/pv0001/"
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  # ten cua pvc
+  name: db-pvc-dr-project
+  labels:
+    name: db-pvc-dr-project
+spec:
+  # class name cua pv de claim
+  storageClassName: db-pv-manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1.5Gi

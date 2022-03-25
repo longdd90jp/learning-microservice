@@ -1,0 +1,7 @@
+kubectl apply -f mongo-secret.yaml
+kubectl apply -f db-persistent.yaml
+kubectl apply -f mongo-deployment.yaml
+
+minikube service --url mongo-svc
+
+minikube service mongo-svc

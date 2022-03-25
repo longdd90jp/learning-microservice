@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  # ten cua deployment
+  name: mongo-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      # ten cua pod
+      component: mongo-pod
+  template:
+    metadata:
+      labels:
+        component: mongo-pod
+    spec:
+      # volume configuration for the pod
+      volumes:
+        - name: mongo-storage
+          persistentVolumeClaim:
+            claimName: db-pvc-dr-project
+      containers:
+        - name: mongo-ctn
+          image: mongo:4.4
+          ports:
+            - containerPort: 5432
+          # volume mounting configuration for the container
+          volumeMounts:
+            - name: mongo-storage
+              mountPath: /var/lib/mongo/data
+              subPath: mongo
+          env:
+            - name: MONGO_INITDB_ROOT_USERNAME
+              value: root
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secret
+                  key: password
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo-svc
+spec:
+  type: LoadBalancer
+  selector:
+    component: mongo-pod
+  ports:
+    - port: 5432
+      targetPort: 5432
